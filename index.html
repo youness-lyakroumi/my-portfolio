@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youness Lyakroumi — Cloud Security Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#050a0f;--surface:#0b1520;--border:#1a3a5c;--accent:#00d4ff;--accent2:#00ff94;--accent3:#ff6b35;--text:#c8dce8;--dim:#4a7a9b;--bright:#e8f4fd;--mono:'Space Mono',monospace;--sans:'Syne',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--mono);overflow-x:hidden;cursor:none}
+    .cursor{width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .1s;mix-blend-mode:screen}
+    .cring{width:36px;height:36px;border:1px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:width .2s,height .2s,border-color .2s}
+    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,255,.015) 2px,rgba(0,212,255,.015) 4px);pointer-events:none;z-index:1000}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(5,10,15,.96) 0%,transparent 100%);border-bottom:1px solid rgba(0,212,255,.08);backdrop-filter:blur(8px)}
+    .nlogo{font-family:var(--sans);font-weight:800;font-size:1.1rem;color:var(--accent)}.nlogo span{color:var(--accent2)}
+    .nlinks{display:flex;gap:2rem;list-style:none}
+    .nlinks a{color:var(--dim);text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative}
+    .nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+    .nlinks a:hover{color:var(--accent)}.nlinks a:hover::after{width:100%}
+    .nstatus{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--accent2)}
+    .sdot{width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+    #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden}
+    .hgridbg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
+    .hglow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.08) 0%,transparent 70%);top:50%;left:62%;transform:translate(-50%,-50%);pointer-events:none}
+    .hglow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,148,.06) 0%,transparent 70%);top:30%;left:18%;transform:translate(-50%,-50%);pointer-events:none}
+    .hcontent{position:relative;z-index:2;max-width:860px}
+    .heyebrow{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem}
+    .heyebrow::before{content:'';width:40px;height:1px;background:var(--accent)}
+    .hname{font-family:var(--sans);font-weight:800;font-size:clamp(2.8rem,7.5vw,6.8rem);line-height:.93;letter-spacing:-.03em;color:var(--bright);margin-bottom:1rem}
+    .hname .hollow{-webkit-text-stroke:2px var(--accent);color:transparent}
+    .htitle{font-family:var(--sans);font-size:clamp(1rem,2vw,1.5rem);font-weight:600;color:var(--accent2);margin-bottom:2rem}
+    .hdesc{font-size:.87rem;line-height:1.9;color:var(--dim);max-width:500px;margin-bottom:3rem}
+    .hdesc strong{color:var(--bright)}
+    .hcta{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .25s;cursor:none;border:none}
+    .btnp{background:var(--accent);color:var(--bg);font-weight:700;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+    .btnp:hover{background:var(--accent2);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--accent)}
+    .btng{background:transparent;color:var(--accent);border:1px solid var(--accent);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+    .btng:hover{background:rgba(0,212,255,.08);transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(0,212,255,.3)}
+    .terminal{position:absolute;right:3rem;top:50%;transform:translateY(-50%);width:400px;background:var(--surface);border:1px solid var(--border);clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,15px 100%,0 calc(100% - 15px));font-size:.76rem;z-index:2;animation:slIn 1s ease .5s both}
+    @keyframes slIn{from{opacity:0;transform:translateY(-40%) translateX(20px)}to{opacity:1;transform:translateY(-50%) translateX(0)}}
+    .tbar{padding:.7rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;background:rgba(0,212,255,.04)}
+    .tdot{width:10px;height:10px;border-radius:50%}
+    .tr{background:#ff5f56}.ty{background:#ffbd2e}.tg{background:#27c93f}
+    .ttitle{margin-left:auto;color:var(--dim);font-size:.66rem}
+    .tbody{padding:1.2rem;line-height:2}
+    .tp{color:var(--accent2)}.tc{color:var(--bright)}.to{color:var(--dim)}.tok{color:var(--accent2)}.tw{color:var(--accent3)}.te{color:#ff4757}
+    .tcur{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:text-bottom}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    section{padding:6rem 3rem}
+    .slabel{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:flex;align-items:center;gap:1rem}
+    .slabel::after{content:'';flex:1;max-width:60px;height:1px;background:var(--accent)}
+    .stitle{font-family:var(--sans);font-weight:800;font-size:clamp(2rem,4vw,3.5rem);color:var(--bright);letter-spacing:-.03em;margin-bottom:3rem;line-height:1}
+    #about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .agrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .atext p{font-size:.87rem;line-height:2;color:var(--dim);margin-bottom:1.2rem}
+    .atext p strong{color:var(--bright)}
+    .ameta{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
+    .mrow{display:flex;align-items:center;gap:.7rem;font-size:.77rem;color:var(--dim)}
+    .mrow .ico{color:var(--accent);min-width:16px}
+    .mrow a{color:var(--dim);text-decoration:none;transition:color .2s}
+    .mrow a:hover{color:var(--accent)}
+    .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+    .scell{background:var(--bg);padding:1.8rem;position:relative;overflow:hidden}
+    .scell::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+    .snum{font-family:var(--sans);font-weight:800;font-size:2.4rem;color:var(--accent);letter-spacing:-.04em;display:block}
+    .slbl2{font-size:.7rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-top:.3rem}
+    .skillgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .skcard{background:var(--bg);padding:2rem;position:relative;overflow:hidden;transition:background .3s}
+    .skcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.04),transparent 60%);opacity:0;transition:opacity .3s}
+    .skcard:hover{background:var(--surface)}.skcard:hover::before{opacity:1}
+    .skicon{font-size:1.8rem;margin-bottom:1rem;display:block}
+    .skname{font-family:var(--sans);font-weight:700;font-size:1rem;color:var(--bright);margin-bottom:.6rem}
+    .skdesc{font-size:.75rem;color:var(--dim);line-height:1.8;margin-bottom:1.2rem}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem}
+    .tag{font-size:.63rem;padding:.25rem .6rem;border:1px solid var(--border);color:var(--dim);letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
+    .skcard:hover .tag{border-color:rgba(0,212,255,.3);color:var(--accent)}
+    #certifications{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .certgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .certcard{border:1px solid var(--border);padding:1.8rem 1.5rem;background:var(--bg);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:border-color .3s,transform .3s}
+    .certcard:hover{border-color:var(--accent);transform:translateY(-4px)}
+    .cbadge{font-size:2rem;margin-bottom:1rem;display:block}
+    .cvendor{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+    .cname{font-family:var(--sans);font-weight:700;font-size:.9rem;color:var(--bright);line-height:1.35}
+    #experience{background:var(--bg)}
+    .tl{position:relative;padding-left:2rem}
+    .tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--accent),var(--border) 80%,transparent)}
+    .tlitem{position:relative;padding-bottom:3rem}
+    .tlitem::before{content:'';position:absolute;left:-2.37rem;top:.3rem;width:10px;height:10px;border:2px solid var(--accent);background:var(--bg);transform:rotate(45deg)}
+    .tlperiod{font-size:.68rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+    .tlrole{font-family:var(--sans);font-weight:700;font-size:1.2rem;color:var(--bright);margin-bottom:.2rem;letter-spacing:-.02em}
+    .tlco{font-size:.8rem;color:var(--accent2);margin-bottom:1rem}
+    .tlsub{font-family:var(--sans);font-weight:600;font-size:.82rem;color:var(--text);margin:.9rem 0 .5rem}
+    .tllist{font-size:.8rem;color:var(--dim);line-height:1.9}
+    .tllist li{list-style:none;padding-left:1.2rem;position:relative;margin-bottom:.3rem}
+    .tllist li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+    #education{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .edugrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
+    .educard{border:1px solid var(--border);background:var(--bg);padding:2rem;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:border-color .3s,transform .3s}
+    .educard:hover{border-color:var(--accent);transform:translateY(-4px)}
+    .eduicon{font-size:2rem;margin-bottom:1rem;display:block}
+    .eduinst{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+    .edudeg{font-family:var(--sans);font-weight:700;font-size:1rem;color:var(--bright);line-height:1.3}
+    .langrow{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1rem}
+    .langitem{flex:1;min-width:100px}
+    .langname{font-size:.8rem;color:var(--bright);margin-bottom:.5rem}
+    .langbar{height:3px;background:var(--border);position:relative;overflow:hidden}
+    .langfill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .langlvl{font-size:.65rem;color:var(--dim);margin-top:.4rem}
+    #contact{position:relative;text-align:center;overflow:hidden;padding:6rem 3rem}
+    .cglow{position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(0,212,255,.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .cinner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+    .csub{font-size:.85rem;color:var(--dim);line-height:1.9;margin-bottom:3rem}
+    .clinks{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-top:3rem}
+    .clink{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none;color:var(--dim);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .clinkico{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:border-color .3s,transform .3s}
+    .clink:hover{color:var(--accent)}.clink:hover .clinkico{border-color:var(--accent);transform:translateY(-4px)}
+    footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--dim)}
+    footer span{color:var(--accent2)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:900px){nav{padding:1rem 1.5rem}.nlinks{display:none}section{padding:4rem 1.5rem}#hero{padding:7rem 1.5rem 4rem}.terminal{display:none}.agrid{grid-template-columns:1fr;gap:2rem}.skillgrid{grid-template-columns:1fr}.certgrid{grid-template-columns:1fr 1fr}.edugrid{grid-template-columns:1fr}footer{flex-direction:column;gap:.5rem;text-align:center}}
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cring" id="cring"></div>
+<nav>
+  <div class="nlogo">YL<span>.</span>sec</div>
+  <ul class="nlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nstatus"><div class="sdot"></div>Open to opportunities</div>
+</nav>
+
+<section id="hero">
+  <div class="hgridbg"></div>
+  <div class="hglow"></div>
+  <div class="hglow2"></div>
+  <div class="hcontent reveal">
+    <div class="heyebrow">Cloud Security Engineer &middot; Casablanca, Morocco</div>
+    <h1 class="hname">Youness<br><span class="hollow">Lyakroumi</span></h1>
+    <div class="htitle">Microsoft Azure &middot; VMware Carbon Black &middot; CCNA</div>
+    <p class="hdesc">Cloud Security Engineer with expertise in <strong>Microsoft Azure</strong> and a Bachelor's in Cybersecurity &amp; Cloud Computing Engineering. I design innovative technology strategies spanning virtualization, system administration, and cloud-native security solutions.</p>
+    <div class="hcta">
+      <a href="#experience" class="btn btnp">View Experience &rarr;</a>
+      <a href="mailto:youness.lyakroumi@gmail.com" class="btn btng">Get in Touch</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="tbar">
+      <div class="tdot tr"></div><div class="tdot ty"></div><div class="tdot tg"></div>
+      <span class="ttitle">azure-cb-audit.sh</span>
+    </div>
+    <div class="tbody">
+      <div><span class="tp">$</span> <span class="tc">cb-audit --tenant ArrowECS --env prod</span></div>
+      <div class="to">Connecting to Carbon Black Cloud...</div>
+      <div class="to">Tenant: Arrow ECS &middot; Region: EU-West</div>
+      <div>&nbsp;</div>
+      <div><span class="tok">&#10004;</span> <span class="to">App Control policies validated</span></div>
+      <div><span class="tok">&#10004;</span> <span class="to">Endpoint sensors active: 100%</span></div>
+      <div><span class="tok">&#10004;</span> <span class="to">Azure RBAC roles audited (AZ-500)</span></div>
+      <div><span class="tok">&#10004;</span> <span class="to">OpenVPN tunnel: stable on Azure</span></div>
+      <div><span class="tok">&#10004;</span> <span class="to">AVD security baseline applied</span></div>
+      <div><span class="tw">&#9888;</span> <span class="to">2 legacy agent versions detected</span></div>
+      <div>&nbsp;</div>
+      <div class="to">Pushing remediation playbook...</div>
+      <div><span class="tok">&#10004;</span> <span class="to">All endpoints secured. Score: 99/100</span></div>
+      <div>&nbsp;</div>
+      <div><span class="tp">$</span> <span class="tcur"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="agrid">
+    <div class="atext reveal">
+      <div class="slabel">About</div>
+      <h2 class="stitle">Security is<br>a mindset.</h2>
+      <p>I'm a <strong>Cloud Security Engineer</strong> with a Bachelor's degree in Cybersecurity and Cloud Computing Engineering from ENSA Berrechid. My focus is <strong>Microsoft Azure security</strong> and VMware Carbon Black endpoint protection.</p>
+      <p>Currently a <strong>Cybersecurity Support Engineer at Arrow ECS</strong>, I deliver L1 &amp; L2 technical support for Carbon Black App Control and Carbon Black Cloud &mdash; helping enterprise clients implement, configure, and maintain advanced security solutions.</p>
+      <p>My background covers <strong>cloud architecture, virtualization, system administration, and networking</strong>, reinforced by hands-on work with Azure deployments, OpenVPN, cloud migrations, and security consulting.</p>
+      <div class="ameta">
+        <div class="mrow"><span class="ico">&#9993;</span><a href="mailto:youness.lyakroumi@gmail.com">youness.lyakroumi@gmail.com</a></div>
+        <div class="mrow"><span class="ico">&#9742;</span>+212 657 159 150</div>
+        <div class="mrow"><span class="ico">in</span><a href="https://linkedin.com/in/youness-lyakroumi" target="_blank">linkedin.com/in/youness-lyakroumi</a></div>
+        <div class="mrow"><span class="ico">&#128205;</span>Casablanca, Morocco</div>
+      </div>
+    </div>
+    <div class="sgrid reveal">
+      <div class="scell"><span class="snum">3+</span><div class="slbl2">Years in Cloud Security</div></div>
+      <div class="scell"><span class="snum">3</span><div class="slbl2">Cloud Roles Held</div></div>
+      <div class="scell"><span class="snum">6</span><div class="slbl2">Certifications</div></div>
+      <div class="scell"><span class="snum">L1+L2</span><div class="slbl2">Support Expertise</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="slabel">Expertise</div>
+  <h2 class="stitle reveal">Core Skills</h2>
+  <div class="skillgrid">
+    <div class="skcard reveal">
+      <span class="skicon">&#9729;&#65039;</span>
+      <div class="skname">Cloud Computing</div>
+      <p class="skdesc">Designing, deploying, and securing infrastructure on Microsoft Azure &mdash; Virtual Desktops, hybrid connectivity, and cost-optimized cloud architectures.</p>
+      <div class="tags"><span class="tag">MS Azure</span><span class="tag">Az-104</span><span class="tag">Az-900</span><span class="tag">AVD</span><span class="tag">SharePoint</span></div>
+    </div>
+    <div class="skcard reveal">
+      <span class="skicon">&#128737;&#65039;</span>
+      <div class="skname">Endpoint Security</div>
+      <p class="skdesc">L1 &amp; L2 specialist in VMware Carbon Black &mdash; application allowlisting, cloud endpoint protection, and enterprise security policy enforcement.</p>
+      <div class="tags"><span class="tag">Carbon Black</span><span class="tag">App Control</span><span class="tag">CB Cloud</span><span class="tag">VMware</span></div>
+    </div>
+    <div class="skcard reveal">
+      <span class="skicon">&#128421;&#65039;</span>
+      <div class="skname">System Administration</div>
+      <p class="skdesc">Managing and hardening Windows &amp; Linux server environments with expertise in automation, performance monitoring, and incident resolution.</p>
+      <div class="tags"><span class="tag">Windows Server</span><span class="tag">Linux</span><span class="tag">PowerShell</span><span class="tag">Power Automate</span></div>
+    </div>
+    <div class="skcard reveal">
+      <span class="skicon">&#127760;</span>
+      <div class="skname">Computer Networks</div>
+      <p class="skdesc">Configuring and securing network infrastructure &mdash; VPC design, VPN deployments on Azure, and CCNA-level routing &amp; switching.</p>
+      <div class="tags"><span class="tag">Cisco CCNA</span><span class="tag">OpenVPN</span><span class="tag">Network Security</span><span class="tag">Subnets</span></div>
+    </div>
+    <div class="skcard reveal">
+      <span class="skicon">&#9881;&#65039;</span>
+      <div class="skname">Cloud Consulting</div>
+      <p class="skdesc">Delivering cloud migration strategies, documentation, staff training, and ongoing cloud operations support for SMEs and enterprises.</p>
+      <div class="tags"><span class="tag">Cloud Architect</span><span class="tag">Migration</span><span class="tag">Documentation</span><span class="tag">Training</span></div>
+    </div>
+    <div class="skcard reveal">
+      <span class="skicon">&#127912;</span>
+      <div class="skname">Tools &amp; Graphics</div>
+      <p class="skdesc">Supporting technical and creative work with MS Office productivity tools and visual software for documentation and communication.</p>
+      <div class="tags"><span class="tag">Photoshop</span><span class="tag">Illustrator</span><span class="tag">Blender</span><span class="tag">MS Office</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="slabel">Credentials</div>
+  <h2 class="stitle reveal">Certifications</h2>
+  <div class="certgrid">
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">Microsoft</div><div class="cname">Azure Security Engineer Associate</div></div>
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">Microsoft</div><div class="cname">Azure Administrator Associate</div></div>
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">VMware &middot; Broadcom</div><div class="cname">Carbon Black Application Control Technical Specialist</div></div>
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">VMware &middot; Broadcom</div><div class="cname">Carbon Black Cloud Endpoint Standard</div></div>
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">Cisco Academy</div><div class="cname">R&amp;S &mdash; Routing and Switching (CCNA)</div></div>
+    <div class="certcard reveal"><span class="cbadge">&#127885;</span><div class="cvendor">Cambridge University Press</div><div class="cname">Cambridge English Qualification C1 Advanced</div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="slabel">Work History</div>
+  <h2 class="stitle reveal">Experience</h2>
+  <div class="tl reveal">
+    <div class="tlitem">
+      <div class="tlperiod">Current</div>
+      <div class="tlrole">Cybersecurity Support Engineer</div>
+      <div class="tlco">Arrow ECS &middot; Hybrid</div>
+      <div class="tlsub">VMware Carbon Black &mdash; App Control &amp; Carbon Black Cloud</div>
+      <ul class="tllist">
+        <li>Provide L1 and L2 technical and security support for Carbon Black App Control and Carbon Black Cloud.</li>
+        <li>Assist customers with troubleshooting and resolving implementation, configuration, and maintenance issues for enterprise endpoint security.</li>
+        <li>Deliver comprehensive, integrated cybersecurity support across diverse client environments and cloud-based deployments.</li>
+      </ul>
+    </div>
+    <div class="tlitem">
+      <div class="tlperiod">Mar 2022 &mdash; Present</div>
+      <div class="tlrole">Cloud Solutions Engineer &amp; Consultant</div>
+      <div class="tlco">Dovecloud by LY Solutions</div>
+      <div class="tlsub">Engineering Scalable Compute Solutions in Azure</div>
+      <ul class="tllist">
+        <li>Implemented Azure Virtual Desktop infrastructure to optimize resource allocation and reduce operational costs.</li>
+        <li>Strengthened organizational asset security through centralized management and robust security protocols.</li>
+        <li>Streamlined IT operations with centralized management, improving control and oversight across the organization.</li>
+      </ul>
+      <div class="tlsub">OpenVPN Server Deployment on Azure</div>
+      <ul class="tllist">
+        <li>Deployed an OpenVPN server on Azure using Ubuntu Server, designed to support up to 10 concurrent users.</li>
+        <li>Configured Azure infrastructure including VPC, subnets, and security groups for secure network operations.</li>
+        <li>Managed user access and authentication, ensuring stable and secure VPN connections for all users.</li>
+      </ul>
+    </div>
+    <div class="tlitem">
+      <div class="tlperiod">Mar 2023 &mdash; Present</div>
+      <div class="tlrole">Cloud Service Support</div>
+      <div class="tlco">IMPELAB &middot; Freelance</div>
+      <ul class="tllist">
+        <li>Document procedures, configurations, and create training materials for users and IT staff.</li>
+        <li>Monitor system performance, ensure availability and reliability, and troubleshoot issues as they arise.</li>
+      </ul>
+    </div>
+    <div class="tlitem">
+      <div class="tlperiod">Feb 2023 &mdash; Mar 2023</div>
+      <div class="tlrole">Cloud Solution Engineer</div>
+      <div class="tlco">IMPELAB &middot; Hybrid</div>
+      <div class="tlsub">Data Migration to Cloud</div>
+      <ul class="tllist">
+        <li>Led the migration of data from on-site servers to the cloud using SharePoint as the primary solution.</li>
+        <li>Automated migration processes through PowerShell and Power Automate, ensuring efficiency and accuracy.</li>
+        <li>Successfully transferred critical data, resulting in improved accessibility, enhanced security, and reduced costs.</li>
+        <li>Collaborated with cross-functional teams to ensure seamless integration and minimal disruption to business operations.</li>
+        <li>Provided ongoing post-migration support and maintenance to ensure optimal performance.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="slabel">Academic Background</div>
+  <h2 class="stitle reveal">Education</h2>
+  <div class="edugrid reveal">
+    <div class="educard"><span class="eduicon">&#127891;</span><div class="eduinst">ENSA Berrechid</div><div class="edudeg">Bachelor of Cybersecurity and Cloud Computing Engineering</div></div>
+    <div class="educard"><span class="eduicon">&#127891;</span><div class="eduinst">ISTA NTIC Marrakech</div><div class="edudeg">DTS &mdash; Cloud Computing Specialist</div></div>
+  </div>
+  <div class="slabel">Languages</div>
+  <div class="langrow">
+    <div class="langitem"><div class="langname">Arabic</div><div class="langbar"><div class="langfill" style="width:100%"></div></div><div class="langlvl">Native</div></div>
+    <div class="langitem"><div class="langname">English</div><div class="langbar"><div class="langfill" style="width:90%"></div></div><div class="langlvl">C1 Advanced</div></div>
+    <div class="langitem"><div class="langname">French</div><div class="langbar"><div class="langfill" style="width:75%"></div></div><div class="langlvl">Professional</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cglow"></div>
+  <div class="cinner reveal">
+    <div class="slabel" style="justify-content:center">Contact</div>
+    <h2 class="stitle">Let's build<br>something secure.</h2>
+    <p class="csub">Whether you need cloud security consulting, Azure architecture, VMware Carbon Black support, or a dedicated security engineer &mdash; I'm open to conversations. Let's connect.</p>
+    <a href="mailto:youness.lyakroumi@gmail.com" class="btn btnp" style="margin:0 auto;display:inline-flex">Send Email &rarr;</a>
+    <div class="clinks">
+      <a href="https://linkedin.com/in/youness-lyakroumi" target="_blank" class="clink"><div class="clinkico">in</div>LinkedIn</a>
+      <a href="mailto:youness.lyakroumi@gmail.com" class="clink"><div class="clinkico">&#9993;</div>Email</a>
+      <a href="tel:+212657159150" class="clink"><div class="clinkico">&#9742;</div>Call</div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; 2026 Youness Lyakroumi &middot; Casablanca, Morocco</div>
+  <div>Cloud Security Engineer <span>&middot;</span> Deployed on GitHub Pages</div>
+</footer>
+
+<script>
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px'});
+  (function a(){rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+  document.querySelectorAll('a,button,.skcard,.certcard,.educard').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='var(--accent2)'});
+    el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='var(--accent)'});
+  });
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),80)}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
